@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+<!--        Inherit form partner-->
+
+        <record id="res_partner_view_form_social_inherit" model="ir.ui.view">
+            <field name="name">res.partner.view.form.social.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <page name="internal_notes" position="after">
+                    <page name="social_networks" string="Social networks">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div id="social_facebook" class="o_row d-flex">
+                                <span class="fa fa-facebook p-2"> </span>
+                                <label for="social_facebook"/>
+                                 <span class="p-2"> </span>
+                                <field name="social_facebook"  class="oe_inline"/>
+                            </div>
+
+                            <div id="social_linkedin" class="o_row d-flex">
+                                <span class="fa fa-linkedin p-2"> </span>
+                                <label for="social_linkedin"/>
+                                 <span class="p-2"> </span>
+                                <field name="social_linkedin"  class="oe_inline"/>
+                            </div>
+
+                            <div id="social_twitter" class="o_row d-flex">
+                                <span class="fa fa-twitter p-2"> </span>
+                                <label for="social_twitter"/>
+                                 <span class="p-2"> </span>
+                                <field name="social_twitter"  class="oe_inline"/>
+                            </div>
+                        </div>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+<!--        Inherit search partner-->
+        <record id="res_partner_view_filter_social_inherit" model="ir.ui.view">
+            <field name="name">res.partner.view.filter.social.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="after">
+                    <separator/>
+                    <filter string="Profile complete" name="profile_complete" domain="[('complete_profile', '=', True)]"/>
+                    <filter string="Profile incomplete" name="profile_incomplete" domain="[('complete_profile', '=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
