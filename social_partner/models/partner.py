@@ -20,11 +20,13 @@ class ResPartner(models.Model):
             path_img = 'static/src/img/incomplete.png'
             image_path = modules.get_module_resource('social_partner', path_img)
             self.image_1920 = base64.b64encode(open(image_path, 'rb').read())
+            self.image_128 = base64.b64encode(open(image_path, 'rb').read())
 
             if partner.social_twitter and partner.social_facebook and partner.social_linkedin:
                 complete_profile = True
                 path_img = 'static/src/img/complete.png'
                 image_path = modules.get_module_resource('social_partner', path_img)
                 self.image_1920 = base64.b64encode(open(image_path, 'rb').read())
+                self.image_128 = base64.b64encode(open(image_path, 'rb').read())
 
             partner.complete_profile = complete_profile
