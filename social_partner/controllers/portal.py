@@ -27,7 +27,7 @@ class CustomerPortal(CustomerPortal):
 
     def _get_searchbar_inputs(self):
         return {
-            'content': {'input': 'content', 'label': _('Search <span class="nolabel"> (in Content)</span>')},
+            'all': {'input': 'all', 'label': _('Search in All')},
             'name': {'input': 'name', 'label': _('Search in Name')},
             'social_facebook': {'input': 'social_facebook', 'label': _('Search in Facebook')},
             'social_linkedin': {'input': 'social_linkedin', 'label': _('Search in Linkedin')},
@@ -36,8 +36,8 @@ class CustomerPortal(CustomerPortal):
 
     def _get_search_domain(self, search_in, search):
         search_domain = []
-        if search_in in ('content', 'all'):
-            search_domain = OR([search_domain, ['|', '|', '|',('name', 'ilike', search), ('social_facebook', 'ilike', search), ('social_linkedin', 'ilike', search), ('social_twitter', 'ilike', search)]])
+        if search_in in ('name', 'all'):
+            search_domain = OR([search_domain, ['|', '|', '|', ('name', 'ilike', search), ('social_facebook', 'ilike', search), ('social_linkedin', 'ilike', search), ('social_twitter', 'ilike', search)]])
         if search_in in ('name', 'all'):
             search_domain = OR([search_domain, [('name', 'ilike', search)]])
         if search_in in ('social_facebook', 'all'):
